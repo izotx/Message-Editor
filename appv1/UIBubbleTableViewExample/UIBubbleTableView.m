@@ -230,13 +230,13 @@
     NSBubbleData *data = [[self.bubbleSection objectAtIndex:indexPath.section] objectAtIndex:indexPath.row - 1];
     
     static NSString *cellId = @"tblBubbleCell";
-    if(self.hideApple)
-    {
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        cell.textLabel.text = data.bubbleText;
-        return  cell;
-    }
-    else{
+////    if(self.hideApple)
+////    {
+//        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+//        cell.textLabel.text = data.bubbleText;
+//        return  cell;
+//    }
+//    else{
         UIBubbleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         
         
@@ -248,7 +248,7 @@
         return cell;
 
     
-    }
+//    }
     }
 
 //Delegate
