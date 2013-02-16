@@ -28,6 +28,8 @@ typedef enum _NSBubbleTypingType
 @property (nonatomic) BOOL showAvatars;
 @property (nonatomic, assign)id viewControllerTarget;
 @property (nonatomic, strong) NSMutableArray * bubbleData;
+@property (nonatomic) BOOL hideApple;
+
 
 
 @end

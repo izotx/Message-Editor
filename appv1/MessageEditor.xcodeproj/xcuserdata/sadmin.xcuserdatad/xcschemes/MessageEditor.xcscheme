@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "76ED205D15BF096C00E186D3"
-               BuildableName = "UIBubbleTableViewExample.app"
-               BlueprintName = "UIBubbleTableViewExample"
-               ReferencedContainer = "container:UIBubbleTableViewExample.xcodeproj">
+               BuildableName = "MessageEditor.app"
+               BlueprintName = "MessageEditor"
+               ReferencedContainer = "container:MessageEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "76ED205D15BF096C00E186D3"
-            BuildableName = "UIBubbleTableViewExample.app"
-            BlueprintName = "UIBubbleTableViewExample"
-            ReferencedContainer = "container:UIBubbleTableViewExample.xcodeproj">
+            BuildableName = "MessageEditor.app"
+            BlueprintName = "MessageEditor"
+            ReferencedContainer = "container:MessageEditor.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "76ED205D15BF096C00E186D3"
-            BuildableName = "UIBubbleTableViewExample.app"
-            BlueprintName = "UIBubbleTableViewExample"
-            ReferencedContainer = "container:UIBubbleTableViewExample.xcodeproj">
+            BuildableName = "MessageEditor.app"
+            BlueprintName = "MessageEditor"
+            ReferencedContainer = "container:MessageEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "76ED205D15BF096C00E186D3"
-            BuildableName = "UIBubbleTableViewExample.app"
-            BlueprintName = "UIBubbleTableViewExample"
-            ReferencedContainer = "container:UIBubbleTableViewExample.xcodeproj">
+            BuildableName = "MessageEditor.app"
+            BlueprintName = "MessageEditor"
+            ReferencedContainer = "container:MessageEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

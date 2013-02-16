@@ -224,18 +224,32 @@
         return cell;
     }
     
-    // Standard bubble    
-    static NSString *cellId = @"tblBubbleCell";
-    UIBubbleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    
+    // Standard bubble
     NSBubbleData *data = [[self.bubbleSection objectAtIndex:indexPath.section] objectAtIndex:indexPath.row - 1];
     
-    if (cell == nil) cell = [[UIBubbleTableViewCell alloc] init];
+    static NSString *cellId = @"tblBubbleCell";
+    if(self.hideApple)
+    {
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        cell.textLabel.text = data.bubbleText;
+        return  cell;
+    }
+    else{
+        UIBubbleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        
+        
+        if (cell == nil) cell = [[UIBubbleTableViewCell alloc] init];
+        
+        cell.data = data;
+        cell.showAvatar = self.showAvatars;
+        
+        return cell;
+
     
-    cell.data = data;
-    cell.showAvatar = self.showAvatars;
-    
-    return cell;
-}
+    }
+    }
 
 //Delegate
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{

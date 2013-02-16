@@ -269,13 +269,11 @@ didFinishWithError: (NSError *) error
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _messageEditorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-    
     self.title = @" Amanda ";
     //Set the navigation bar
  UIBarButtonItem * barButton =[[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editMessage)];
-    
   self.navigationItem.rightBarButtonItem = barButton;   
-    
+    bubbleTable.hideApple = YES;
       
     NSBubbleData *heyBubble0 = [NSBubbleData dataWithText:@"Hey, thanks for downloading the app! Here is what you can do with it: " date:[NSDate dateWithTimeIntervalSinceNow:-10] type:BubbleTypeSomeoneElse];
     NSBubbleData *heyBubble1 = [NSBubbleData dataWithText:@"Tap on the message bubble to edit it's text and date. " date:[NSDate dateWithTimeIntervalSinceNow:-10] type:BubbleTypeSomeoneElse];
