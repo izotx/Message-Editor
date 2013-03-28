@@ -17,5 +17,6 @@
 #import <iAd/iAd.h>
 #import <QuartzCore/QuartzCore.h>
 @interface ViewController : UIViewController <UIBubbleTableViewDataSource, UIActionSheetDelegate, UITableViewDelegate, UITextFieldDelegate, ADBannerViewDelegate>
+@property (retain, nonatomic) IBOutlet UIImageView *navigationBarCustomImage;
 
 @end

@@ -29,18 +29,27 @@
 
 #pragma mark - Initializators
 
+-(void)setHideApple:(BOOL)hideApple{
+
+    if(hideApple){
+        self.backgroundColor = [UIColor whiteColor];
+        self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+    else{
+        self.backgroundColor = [UIColor clearColor];
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    }
+}
+
 - (void)initializator
 {
-    // UITableView properties
+        self.backgroundColor = [UIColor clearColor];
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        assert(self.style == UITableViewStylePlain);
+        self.delegate = self;
+        self.dataSource = self;
     
-    self.backgroundColor = [UIColor clearColor];
-    self.separatorStyle = UITableViewCellSeparatorStyleNone;
-    assert(self.style == UITableViewStylePlain);
-    
-    self.delegate = self;
-    self.dataSource = self;
-    
-    // UIBubbleTableView default properties
     
     self.snapInterval = 60;
     self.typingBubble = NSBubbleTypingTypeNobody;
@@ -196,20 +205,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Now typing
-	if (indexPath.section >= [self.bubbleSection count])
-    {
-        static NSString *cellId = @"tblBubbleTypingCell";
-        UIBubbleTypingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        
-        if (cell == nil) cell = [[UIBubbleTypingTableViewCell alloc] init];
-
-        cell.type = self.typingBubble;
-        cell.showAvatar = self.showAvatars;
-        
-        return cell;
-    }
-
+    
     // Header with date and time
     if (indexPath.row == 0)
     {
@@ -223,34 +219,27 @@
        
         return cell;
     }
-    
-    
-    
+
     // Standard bubble
     NSBubbleData *data = [[self.bubbleSection objectAtIndex:indexPath.section] objectAtIndex:indexPath.row - 1];
     
+   // UITableViewCell * cell = nil;
     static NSString *cellId = @"tblBubbleCell";
-////    if(self.hideApple)
-////    {
-//        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-//        cell.textLabel.text = data.bubbleText;
-//        return  cell;
-//    }
-//    else{
-        UIBubbleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        
-        
-        if (cell == nil) cell = [[UIBubbleTableViewCell alloc] init];
-        
-        cell.data = data;
-        cell.showAvatar = self.showAvatars;
-        
+
+    UIBubbleTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+            if (cell == nil) cell = [[UIBubbleTableViewCell alloc] init];
+    
+            cell.data = data;
+            cell.showAvatar = self.showAvatars;
+            cell.hideApple = self.hideApple;
+    
         return cell;
 
-    
-//    }
-    }
+}
 
+    
+    
 //Delegate
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
    // UIBubbleTableViewCell * tableCell =   (UIBubbleTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];

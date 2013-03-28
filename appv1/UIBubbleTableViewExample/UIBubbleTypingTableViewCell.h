@@ -16,5 +16,7 @@
 
 @property (nonatomic) NSBubbleTypingType type;
 @property (nonatomic) BOOL showAvatar;
+@property (nonatomic) BOOL hideApple;
+
 
 @end
