@@ -32,6 +32,9 @@
     UIActionSheet * editOptions;
     NSMutableArray *bubbleData;
 }
+
+
+@property (retain, nonatomic) IBOutlet UIButton *settingsButton;
 @property (retain, nonatomic) IBOutlet UILabel *addresseLabel;
 @property (retain, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
@@ -49,7 +52,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *previewButton;
 @property (nonatomic)BOOL bannerIsVisible;
 @property (retain, nonatomic) IBOutlet UIView *previewView;
-
+@property (assign,nonatomic) BOOL bannerIsVisible;
 
 
 
@@ -162,15 +165,20 @@
 
 
 -(UIImage *)createScreenshot{
-    //[_adBannerView removeFromSuperview];
     _adBannerView.hidden = YES;
+    bubbleTable.hideApple = NO;
+    
+    [bubbleTable reloadData];
+    self.settingsButton.hidden=YES;
+    self.navigationBarCustomImage.image = [UIImage imageNamed:@"navbar"];
     UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, YES, 0.0);
     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    //[bubbleTable.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
     UIImage *myScreenshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     _adBannerView.hidden = NO;
-  
+    self.navigationBarCustomImage.image= nil;
+    self.settingsButton.hidden=NO;
     
     return myScreenshot;
 }
@@ -266,7 +274,13 @@ didFinishWithError: (NSError *) error
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+<<<<<<< HEAD
     self.adBannerView.frame = CGRectOffset(self.adBannerView.frame, self.adBannerView.frame.size.width, 0);
+=======
+
+
+
+>>>>>>> Copied Files to different folder and now we have it..
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _messageEditorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
@@ -448,6 +462,9 @@ didFinishWithError: (NSError *) error
     [_addresseLabel release];
     [_previewView release];
     [_previewButton release];
+   
+    [_navigationBarCustomImage release];
+    [_settingsButton release];
     [super dealloc];
 }
 
@@ -457,9 +474,11 @@ didFinishWithError: (NSError *) error
     return  YES;
 }
 
+
 - (void)bannerViewWillLoadAd:(ADBannerView *)banner{
     banner.hidden = NO;
     NSLog(@"Loading banner");
+<<<<<<< HEAD
     if(!self.bannerIsVisible) {
         [UIView animateWithDuration:.5 animations:^{
             self.adBannerView.frame = CGRectOffset(self.adBannerView.frame, -self.adBannerView.frame.size.width, 0);
@@ -479,6 +498,29 @@ didFinishWithError: (NSError *) error
         } completion:^(BOOL finished) {
             self.bannerIsVisible = !finished;
         }];
+=======
+    self.bannerIsVisible = YES;
+    [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+    float w = self.adBannerView.frame.size.width;
+    float h = self.adBannerView.frame.size.height;
+    float y = self.view.frame.size.height - textInputView.frame.size.height-h;
+    self.adBannerView.frame = CGRectMake(0,y,w,h);
+    [UIView commitAnimations];
+}
+
+
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    
+    if (self.bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0,self.view.frame.size.height+1000);
+        
+        [UIView commitAnimations];
+        self.bannerIsVisible = NO;
+>>>>>>> Copied Files to different folder and now we have it..
     }
 }
 
