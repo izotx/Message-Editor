@@ -47,7 +47,7 @@
 @property (retain, nonatomic) IBOutlet UIView *editAddresseeView;
 @property (retain, nonatomic) IBOutlet UITextField *addresseeTextField;
 @property (retain, nonatomic) IBOutlet UIButton *previewButton;
-
+@property (nonatomic)BOOL bannerIsVisible;
 @property (retain, nonatomic) IBOutlet UIView *previewView;
 
 
@@ -266,6 +266,7 @@ didFinishWithError: (NSError *) error
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.adBannerView.frame = CGRectOffset(self.adBannerView.frame, self.adBannerView.frame.size.width, 0);
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _messageEditorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
@@ -459,12 +460,29 @@ didFinishWithError: (NSError *) error
 - (void)bannerViewWillLoadAd:(ADBannerView *)banner{
     banner.hidden = NO;
     NSLog(@"Loading banner");
+    if(!self.bannerIsVisible) {
+        [UIView animateWithDuration:.5 animations:^{
+            self.adBannerView.frame = CGRectOffset(self.adBannerView.frame, -self.adBannerView.frame.size.width, 0);
+        } completion:^(BOOL finished) {
+            self.bannerIsVisible = finished;
+        }];
+    }
 }
 
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    banner.hidden = YES;
-    NSLog(@"Hiding banner %@ ", [error debugDescription]);
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    NSLog(@"adbanner failed because %@",error.localizedDescription);
+    if (self.bannerIsVisible)
+    {
+        [UIView animateWithDuration:.5 animations:^{
+            self.adBannerView.frame = CGRectOffset(self.adBannerView.frame, self.adBannerView.frame.size.width, 0);
+        } completion:^(BOOL finished) {
+            self.bannerIsVisible = !finished;
+        }];
+    }
 }
+
+
 
 - (BOOL)supportedInterfaceOrientations
 {
